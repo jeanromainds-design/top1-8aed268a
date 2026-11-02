@@ -1,4 +1,4 @@
-const C='top1-v12',A='top1-audio-v1',F=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-180.png'];
+const C='top1-v13',A='top1-audio-v1',F=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-180.png'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.addAll(F)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C&&x!==A).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
 async function audio(req){const c=await caches.open(A),r=await c.match(req.url);if(!r)return fetch(req);const rg=req.headers.get('range');if(!rg)return r;
